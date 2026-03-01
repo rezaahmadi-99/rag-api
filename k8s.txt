@@ -1,0 +1,2 @@
+Kubernetes is a container orchestration platform used to manage containers at scale.
+Docker's primary focus is to automate the deployment of applications inside software containers and the automation of operating system level virtualization on Linux. It's more lightweight than standard Containers and boots up in seconds.
