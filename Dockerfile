@@ -11,6 +11,8 @@ COPY embedding.py app.py k8s.txt ./
 
 RUN pip install fastapi uvicorn ollama chromadb
 
+ENV OLLAMA_HOST="http://127.0.0.1:11434"
+
 # RUN python embedding.py
 
 EXPOSE 8000
