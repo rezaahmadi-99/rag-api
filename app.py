@@ -12,6 +12,8 @@ newpath = './db1'
 if not os.path.exists(newpath):
     os.makedirs(newpath)
 
+ollama_client = ollama.Client(host=os.getenv("OLLAMA_HOST"))
+
 chroma_client = chromadb.PersistentClient(path=newpath)
 
 collection = chroma_client.get_or_create_collection(name="document")
@@ -40,7 +42,7 @@ def query(q:str):
         context = base_knowledge['documents'][0][0]
 
     # get answer from tinyllama model based on context and query
-    answer = ollama.generate(model='tinyllama', prompt= f"Context: {context} \nQuestion: {q}")
+    answer = ollama_client.generate(model='tinyllama', prompt= f"Context: {context} \nQuestion: {q}")
 
     return {"answer":{answer.response}}
 
