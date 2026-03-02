@@ -1,24 +1,17 @@
-# version: "3"
-# services:
-#   app:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     ports:
-#       - "8000:8000"
-#     environment:
-#       - OLLAMA_HOST=http://127.0.0.1:11434
-#     volumes:
-#       - ./app:/app
-#     depends_on:
-#       - db
-#     restart_policy:
-#       condition: on-failure
+version: "3.8"
 
-#   db:
-#     image: postgres
-#     environment:
-#       - POSTGRES_PASSWORD=secret
-#       - POSTGRES_DB=fastapi
-#       - POSTGRES_USER=fastapi
-#       - POSTGRES_HOST_AUTH=md5
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    # bind mount the single file so changes persist on the host
+    volumes:
+      - ./k8s.txt:/app/k8s.txt
+
+# no named volumes needed for a single file in this case
+volumes: {}
