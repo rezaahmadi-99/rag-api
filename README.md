@@ -154,7 +154,7 @@ New knowledge is immediately available to subsequent `/query` calls and is persi
 No API keys, no usage costs, no data leaving the machine. The entire system runs offline once the model is pulled, which makes it suitable for private or air-gapped environments.
 
 **Why ChromaDB?**
-ChromaDB runs in-process with no separate service to manage, uses sensible defaults for embedding (sentence-transformers under the hood), and supports persistent storage — making it a practical choice for a self-contained RAG system.
+ChromaDB runs in-process with no separate service to manage, uses sensible defaults for embedding (sentence-transformers under the hood), and supports persistent storage, making it a practical choice for a self-contained RAG system.
 
 **Why the distance threshold?**
 A naive RAG implementation injects the top-k retrieved documents unconditionally. This actively degrades LLM output when the query is out-of-distribution relative to the knowledge base. The `distance > 1.0` guard ensures context is only injected when it is genuinely relevant.
