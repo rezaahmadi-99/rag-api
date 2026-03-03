@@ -19,6 +19,7 @@ build/
 *.swo
 *~
 .DS_Store
+.qodo
 
 # Logs
 logs/
