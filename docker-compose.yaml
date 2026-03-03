@@ -9,7 +9,7 @@ services:
       - OLLAMA_HOST=http://host.docker.internal:11434
     # bind mount the single file so changes persist on the host
     volumes:
-      - ./k8s.txt:/app/k8s.txt
+      - ./knowledgebase.txt:/app/knowledgebase.txt
 
 # no named volumes needed for a single file in this case
 volumes: {}

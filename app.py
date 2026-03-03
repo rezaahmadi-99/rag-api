@@ -18,7 +18,7 @@ chroma_client = chromadb.PersistentClient(path=newpath)
 collection = chroma_client.get_or_create_collection(name="document")
 
 
-with open("k8s.txt", 'r') as file:
+with open("knowledgebase.txt", 'r') as file:
     k8s_content = file.read()
 
 collection.add(ids=['k8s'], documents=[k8s_content])
@@ -58,7 +58,7 @@ def add_knowledge(text:str):
         collection.add(ids=[str(id)], documents=[text])
 
         # add the knowledge to k8s.txt file
-        with open("k8s.txt", "a") as file:
+        with open("knowledgebase.txt", "a") as file:
             file.write(text + '\n')
 
         # send back a success message
