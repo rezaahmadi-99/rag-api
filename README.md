@@ -31,7 +31,7 @@ User Request
      │                    │
      │              grounded answer
      │                    │
-     └─── /add ───► ChromaDB + k8s.txt (persist)
+     └─── /add ───► ChromaDB + knowledgebase.txt (persist)
 ```
 
 **Request flow for `/query`:**
@@ -42,7 +42,7 @@ User Request
 
 **Request flow for `/add`:**
 1. New text is assigned a UUID and embedded into ChromaDB
-2. The text is simultaneously appended to `k8s.txt`, which is bind-mounted to the host — ensuring knowledge survives container restarts
+2. The text is simultaneously appended to `knowledgebase.txt`, which is bind-mounted to the host — ensuring knowledge survives container restarts
 
 ---
 
