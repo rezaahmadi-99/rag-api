@@ -1,6 +1,6 @@
 # RAG API
 
-A production-ready Retrieval-Augmented Generation (RAG) API built with FastAPI, ChromaDB, and Ollama — fully containerised and deployable with a single command.
+A production-ready Retrieval-Augmented Generation (RAG) API built with FastAPI, ChromaDB, and Ollama, and is fully containerised and deployable with a single command.
 
 ---
 
@@ -56,10 +56,6 @@ User Request
 | **Docker** | Containerises the FastAPI app and its dependencies |
 | **Docker Compose** | Wires the app container to the host-resident Ollama service |
 | **Uvicorn** | ASGI server — serves FastAPI in both dev and production |
-
-The serving architecture follows the standard production Python web stack: Nginx (optional reverse proxy) → Gunicorn + UvicornWorker → FastAPI callable.
-
-![WSGI/ASGI Architecture](01-wsgi_excalidraw.png)
 
 ---
 
@@ -147,7 +143,6 @@ New knowledge is immediately available to subsequent `/query` calls and is persi
 ├── k8s.txt                 # Knowledge base (plain text, bind-mounted)
 ├── Dockerfile              # Container definition for the FastAPI app
 ├── docker-compose.yaml     # Multi-service orchestration
-├── 01-wsgi_excalidraw.png  # Architecture diagram
 └── README.md
 ```
 
@@ -165,7 +160,7 @@ ChromaDB runs in-process with no separate service to manage, uses sensible defau
 A naive RAG implementation injects the top-k retrieved documents unconditionally. This actively degrades LLM output when the query is out-of-distribution relative to the knowledge base. The `distance > 1.0` guard ensures context is only injected when it is genuinely relevant.
 
 **Why bind-mount `k8s.txt`?**
-The `/add` endpoint writes new knowledge to both ChromaDB and `k8s.txt`. Mounting the file to the host means the knowledge base accumulates across container restarts — without needing a persistent volume for the entire database directory.
+The `/add` endpoint writes new knowledge to both ChromaDB and `k8s.txt`. Mounting the file to the host means the knowledge base accumulates across container restarts, without needing a persistent volume for the entire database directory.
 
 ---
 
