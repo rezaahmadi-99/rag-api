@@ -131,7 +131,7 @@ curl -X POST "http://localhost:8000/add?text=Airflow+is+a+workflow+orchestration
 }
 ```
 
-New knowledge is immediately available to subsequent `/query` calls and is persisted to `k8s.txt` on the host via Docker bind mount — surviving container restarts without requiring a rebuild.
+New knowledge is immediately available to subsequent `/query` calls and is persisted to `knowledgebase.txt` on the host via Docker bind mount — surviving container restarts without requiring a rebuild.
 
 ---
 
@@ -140,7 +140,7 @@ New knowledge is immediately available to subsequent `/query` calls and is persi
 ```
 .
 ├── app.py                  # FastAPI application — query and add endpoints
-├── k8s.txt                 # Knowledge base (plain text, bind-mounted)
+├── knowledgebase.txt                 # Knowledge base (plain text, bind-mounted)
 ├── Dockerfile              # Container definition for the FastAPI app
 ├── docker-compose.yaml     # Multi-service orchestration
 └── README.md
@@ -159,8 +159,8 @@ ChromaDB runs in-process with no separate service to manage, uses sensible defau
 **Why the distance threshold?**
 A naive RAG implementation injects the top-k retrieved documents unconditionally. This actively degrades LLM output when the query is out-of-distribution relative to the knowledge base. The `distance > 1.0` guard ensures context is only injected when it is genuinely relevant.
 
-**Why bind-mount `k8s.txt`?**
-The `/add` endpoint writes new knowledge to both ChromaDB and `k8s.txt`. Mounting the file to the host means the knowledge base accumulates across container restarts, without needing a persistent volume for the entire database directory.
+**Why bind-mount `knowledgebase.txt`?**
+The `/add` endpoint writes new knowledge to both ChromaDB and `knowledgebase.txt`. Mounting the file to the host means the knowledge base accumulates across container restarts, without needing a persistent volume for the entire database directory.
 
 ---
 
