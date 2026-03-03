@@ -1,6 +1,6 @@
 # RAG API
 
-A production-ready Retrieval-Augmented Generation (RAG) API built with FastAPI, ChromaDB, and Ollama, and is fully containerised through Docker and deployable with a single command.
+A production-ready Retrieval-Augmented Generation (RAG) API built with FastAPI, ChromaDB, and Ollama, and is fully containerised and deployable with a single command.
 
 ---
 
