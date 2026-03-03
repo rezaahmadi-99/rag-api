@@ -7,14 +7,10 @@ WORKDIR /app
 # Update Ubuntu packages
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
-COPY embedding.py app.py k8s.txt ./
+COPY app.py k8s.txt ./
 
 RUN pip install fastapi uvicorn ollama chromadb
 
-
-# ENV OLLAMA_HOST="http://host.docker.internal:11434"
-
-# RUN python embedding.py
 
 EXPOSE 8000
 
