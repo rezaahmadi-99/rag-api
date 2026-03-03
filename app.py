@@ -2,7 +2,6 @@ from fastapi import FastAPI
 import ollama
 import chromadb
 import uuid
-from embedding import newpath 
 import os
 
 
