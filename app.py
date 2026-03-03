@@ -19,9 +19,9 @@ collection = chroma_client.get_or_create_collection(name="document")
 
 
 with open("knowledgebase.txt", 'r') as file:
-    k8s_content = file.read()
+    knowledge_base = file.read()
 
-collection.add(ids=['k8s'], documents=[k8s_content])
+collection.add(ids=['knowledge_base'], documents=[knowledge_base])
 
 print('Embedding stored in vector db.')
 
@@ -57,7 +57,7 @@ def add_knowledge(text:str):
         # add knowledge to chroma's database (local)
         collection.add(ids=[str(id)], documents=[text])
 
-        # add the knowledge to k8s.txt file
+        # add the knowledge to knowledgebase.txt file
         with open("knowledgebase.txt", "a") as file:
             file.write(text + '\n')
 
